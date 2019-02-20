@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yay.mybatis.mapper.XJKRedemptionMonthOrderMapper">
+  <resultMap id="BaseResultMap" type="com.yay.mybatis.domain.XJKRedemptionMonthOrder">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="VERSION" jdbcType="INTEGER" property="version" />
+    <result column="SOURCE" jdbcType="VARCHAR" property="source" />
+    <result column="CHANNEL" jdbcType="VARCHAR" property="channel" />
+    <result column="TRADE_NO" jdbcType="VARCHAR" property="tradeNo" />
+    <result column="PRODUCT_ORDER_NO" jdbcType="VARCHAR" property="productOrderNo" />
+    <result column="CUST_ACC_NO" jdbcType="VARCHAR" property="custAccNo" />
+    <result column="CUST_NAME" jdbcType="VARCHAR" property="custName" />
+    <result column="ORDER_NO" jdbcType="VARCHAR" property="orderNo" />
+    <result column="FUND_CODE" jdbcType="VARCHAR" property="fundCode" />
+    <result column="PRODUCT_CODE" jdbcType="VARCHAR" property="productCode" />
+    <result column="IDENTITY_CODE" jdbcType="VARCHAR" property="identityCode" />
+    <result column="ORDER_AMT" jdbcType="DECIMAL" property="orderAmt" />
+    <result column="ORDER_STATUS" jdbcType="VARCHAR" property="orderStatus" />
+    <result column="ORDER_DATE" jdbcType="TIMESTAMP" property="orderDate" />
+    <result column="TRADE_DATE" jdbcType="TIMESTAMP" property="tradeDate" />
+    <result column="SETTlE_DATE" jdbcType="DATE" property="settleDate" />
+    <result column="IS_SPEED" jdbcType="VARCHAR" property="isSpeed" />
+    <result column="RECON_STATUS" jdbcType="VARCHAR" property="reconStatus" />
+    <result column="RECON_TIME" jdbcType="TIMESTAMP" property="reconTime" />
+    <result column="SETTLE_STATUS" jdbcType="VARCHAR" property="settleStatus" />
+    <result column="SETTLE_TIME" jdbcType="TIMESTAMP" property="settleTime" />
+    <result column="TRADE_ERROR" jdbcType="VARCHAR" property="tradeError" />
+    <result column="RECON_ERROR" jdbcType="VARCHAR" property="reconError" />
+    <result column="RECON_ORDER_NO" jdbcType="VARCHAR" property="reconOrderNo" />
+    <result column="BORROW_STATUS" jdbcType="VARCHAR" property="borrowStatus" />
+    <result column="PAYER_MERCHANT_NO" jdbcType="VARCHAR" property="payerMerchantNo" />
+    <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="YN" jdbcType="TINYINT" property="yn" typeHandler="com.yay.mybatis.domain.BooleanTinyIntTypeTypeHandler" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="CREATE_OPERATOR" jdbcType="VARCHAR" property="createOperator" />
+    <result column="UPDATE_OPERATOR" jdbcType="VARCHAR" property="updateOperator" />
+    <result column="PART_ID" jdbcType="BIGINT" property="partId" />
+    <result column="IS_PERSONAL_ACC" jdbcType="VARCHAR" property="isPersonalAcc" />
+    <result column="TRADE_ONLINE" jdbcType="VARCHAR" property="tradeOnline" typeHandler="org.apache.ibatis.type.EnumTypeHandler" />
+    <result column="AD_BANK_CODE" jdbcType="VARCHAR" property="adBankCode" typeHandler="org.apache.ibatis.type.EnumTypeHandler" />
+    <result column="AD_MONEY_RETURN" jdbcType="VARCHAR" property="adMoneyReturn" typeHandler="org.apache.ibatis.type.EnumTypeHandler" />
+    <result column="BUSI_CODE" jdbcType="VARCHAR" property="busiCode" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    ID, VERSION, SOURCE, CHANNEL, TRADE_NO, PRODUCT_ORDER_NO, CUST_ACC_NO, CUST_NAME, 
+    ORDER_NO, FUND_CODE, PRODUCT_CODE, IDENTITY_CODE, ORDER_AMT, ORDER_STATUS, ORDER_DATE, 
+    TRADE_DATE, SETTlE_DATE, IS_SPEED, RECON_STATUS, RECON_TIME, SETTLE_STATUS, SETTLE_TIME, 
+    TRADE_ERROR, RECON_ERROR, RECON_ORDER_NO, BORROW_STATUS, PAYER_MERCHANT_NO, CREATED_TIME, 
+    UPDATE_TIME, YN, REMARK, CREATE_OPERATOR, UPDATE_OPERATOR, PART_ID, IS_PERSONAL_ACC, 
+    TRADE_ONLINE, AD_BANK_CODE, AD_MONEY_RETURN, BUSI_CODE
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xjk_redemption_month_order
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from xjk_redemption_month_order
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" keyProperty="id" parameterType="com.yay.mybatis.domain.XJKRedemptionMonthOrder" useGeneratedKeys="true">
+    insert into xjk_redemption_month_order (VERSION, SOURCE, CHANNEL, 
+      TRADE_NO, PRODUCT_ORDER_NO, CUST_ACC_NO, 
+      CUST_NAME, ORDER_NO, FUND_CODE, 
+      PRODUCT_CODE, IDENTITY_CODE, ORDER_AMT, 
+      ORDER_STATUS, ORDER_DATE, TRADE_DATE, 
+      SETTlE_DATE, IS_SPEED, RECON_STATUS, 
+      RECON_TIME, SETTLE_STATUS, SETTLE_TIME, 
+      TRADE_ERROR, RECON_ERROR, RECON_ORDER_NO, 
+      BORROW_STATUS, PAYER_MERCHANT_NO, CREATED_TIME, 
+      UPDATE_TIME, YN, 
+      REMARK, CREATE_OPERATOR, UPDATE_OPERATOR, 
+      PART_ID, IS_PERSONAL_ACC, TRADE_ONLINE, 
+      AD_BANK_CODE, 
+      AD_MONEY_RETURN, 
+      BUSI_CODE)
+    values (#{version,jdbcType=INTEGER}, #{source,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}, 
+      #{tradeNo,jdbcType=VARCHAR}, #{productOrderNo,jdbcType=VARCHAR}, #{custAccNo,jdbcType=VARCHAR}, 
+      #{custName,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{fundCode,jdbcType=VARCHAR}, 
+      #{productCode,jdbcType=VARCHAR}, #{identityCode,jdbcType=VARCHAR}, #{orderAmt,jdbcType=DECIMAL}, 
+      #{orderStatus,jdbcType=VARCHAR}, #{orderDate,jdbcType=TIMESTAMP}, #{tradeDate,jdbcType=TIMESTAMP}, 
+      #{settleDate,jdbcType=DATE}, #{isSpeed,jdbcType=VARCHAR}, #{reconStatus,jdbcType=VARCHAR}, 
+      #{reconTime,jdbcType=TIMESTAMP}, #{settleStatus,jdbcType=VARCHAR}, #{settleTime,jdbcType=TIMESTAMP}, 
+      #{tradeError,jdbcType=VARCHAR}, #{reconError,jdbcType=VARCHAR}, #{reconOrderNo,jdbcType=VARCHAR}, 
+      #{borrowStatus,jdbcType=VARCHAR}, #{payerMerchantNo,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{yn,jdbcType=TINYINT,typeHandler=com.yay.mybatis.domain.BooleanTinyIntTypeTypeHandler},
+      #{remark,jdbcType=VARCHAR}, #{createOperator,jdbcType=VARCHAR}, #{updateOperator,jdbcType=VARCHAR}, 
+      #{partId,jdbcType=BIGINT}, #{isPersonalAcc,jdbcType=VARCHAR}, #{tradeOnline,jdbcType=VARCHAR,typeHandler=org.apache.ibatis.type.EnumTypeHandler}, 
+      #{adBankCode,jdbcType=VARCHAR,typeHandler=org.apache.ibatis.type.EnumTypeHandler}, 
+      #{adMoneyReturn,jdbcType=VARCHAR,typeHandler=org.apache.ibatis.type.EnumTypeHandler}, 
+      #{busiCode,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yay.mybatis.domain.XJKRedemptionMonthOrder">
+    update xjk_redemption_month_order
+    <set>
+      <if test="version != null">
+        VERSION = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="source != null">
+        SOURCE = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null">
+        CHANNEL = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeNo != null">
+        TRADE_NO = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productOrderNo != null">
+        PRODUCT_ORDER_NO = #{productOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="custAccNo != null">
+        CUST_ACC_NO = #{custAccNo,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null">
+        CUST_NAME = #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fundCode != null">
+        FUND_CODE = #{fundCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productCode != null">
+        PRODUCT_CODE = #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="identityCode != null">
+        IDENTITY_CODE = #{identityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAmt != null">
+        ORDER_AMT = #{orderAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="orderStatus != null">
+        ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null">
+        ORDER_DATE = #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeDate != null">
+        TRADE_DATE = #{tradeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="settleDate != null">
+        SETTlE_DATE = #{settleDate,jdbcType=DATE},
+      </if>
+      <if test="isSpeed != null">
+        IS_SPEED = #{isSpeed,jdbcType=VARCHAR},
+      </if>
+      <if test="reconStatus != null">
+        RECON_STATUS = #{reconStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="reconTime != null">
+        RECON_TIME = #{reconTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="settleStatus != null">
+        SETTLE_STATUS = #{settleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="settleTime != null">
+        SETTLE_TIME = #{settleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeError != null">
+        TRADE_ERROR = #{tradeError,jdbcType=VARCHAR},
+      </if>
+      <if test="reconError != null">
+        RECON_ERROR = #{reconError,jdbcType=VARCHAR},
+      </if>
+      <if test="reconOrderNo != null">
+        RECON_ORDER_NO = #{reconOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowStatus != null">
+        BORROW_STATUS = #{borrowStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="payerMerchantNo != null">
+        PAYER_MERCHANT_NO = #{payerMerchantNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yn != null">
+        YN = #{yn,jdbcType=TINYINT,typeHandler=com.yay.mybatis.domain.BooleanTinyIntTypeTypeHandler},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createOperator != null">
+        CREATE_OPERATOR = #{createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="updateOperator != null">
+        UPDATE_OPERATOR = #{updateOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="partId != null">
+        PART_ID = #{partId,jdbcType=BIGINT},
+      </if>
+      <if test="isPersonalAcc != null">
+        IS_PERSONAL_ACC = #{isPersonalAcc,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeOnline != null">
+        TRADE_ONLINE = #{tradeOnline,jdbcType=VARCHAR,typeHandler=org.apache.ibatis.type.EnumTypeHandler},
+      </if>
+      <if test="adBankCode != null">
+        AD_BANK_CODE = #{adBankCode,jdbcType=VARCHAR,typeHandler=org.apache.ibatis.type.EnumTypeHandler},
+      </if>
+      <if test="adMoneyReturn != null">
+        AD_MONEY_RETURN = #{adMoneyReturn,jdbcType=VARCHAR,typeHandler=org.apache.ibatis.type.EnumTypeHandler},
+      </if>
+      <if test="busiCode != null">
+        BUSI_CODE = #{busiCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yay.mybatis.domain.XJKRedemptionMonthOrder">
+    update xjk_redemption_month_order
+    set VERSION = #{version,jdbcType=INTEGER},
+      SOURCE = #{source,jdbcType=VARCHAR},
+      CHANNEL = #{channel,jdbcType=VARCHAR},
+      TRADE_NO = #{tradeNo,jdbcType=VARCHAR},
+      PRODUCT_ORDER_NO = #{productOrderNo,jdbcType=VARCHAR},
+      CUST_ACC_NO = #{custAccNo,jdbcType=VARCHAR},
+      CUST_NAME = #{custName,jdbcType=VARCHAR},
+      ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      FUND_CODE = #{fundCode,jdbcType=VARCHAR},
+      PRODUCT_CODE = #{productCode,jdbcType=VARCHAR},
+      IDENTITY_CODE = #{identityCode,jdbcType=VARCHAR},
+      ORDER_AMT = #{orderAmt,jdbcType=DECIMAL},
+      ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},
+      ORDER_DATE = #{orderDate,jdbcType=TIMESTAMP},
+      TRADE_DATE = #{tradeDate,jdbcType=TIMESTAMP},
+      SETTlE_DATE = #{settleDate,jdbcType=DATE},
+      IS_SPEED = #{isSpeed,jdbcType=VARCHAR},
+      RECON_STATUS = #{reconStatus,jdbcType=VARCHAR},
+      RECON_TIME = #{reconTime,jdbcType=TIMESTAMP},
+      SETTLE_STATUS = #{settleStatus,jdbcType=VARCHAR},
+      SETTLE_TIME = #{settleTime,jdbcType=TIMESTAMP},
+      TRADE_ERROR = #{tradeError,jdbcType=VARCHAR},
+      RECON_ERROR = #{reconError,jdbcType=VARCHAR},
+      RECON_ORDER_NO = #{reconOrderNo,jdbcType=VARCHAR},
+      BORROW_STATUS = #{borrowStatus,jdbcType=VARCHAR},
+      PAYER_MERCHANT_NO = #{payerMerchantNo,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      YN = #{yn,jdbcType=TINYINT,typeHandler=com.yay.mybatis.domain.BooleanTinyIntTypeTypeHandler},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATE_OPERATOR = #{createOperator,jdbcType=VARCHAR},
+      UPDATE_OPERATOR = #{updateOperator,jdbcType=VARCHAR},
+      PART_ID = #{partId,jdbcType=BIGINT},
+      IS_PERSONAL_ACC = #{isPersonalAcc,jdbcType=VARCHAR},
+      TRADE_ONLINE = #{tradeOnline,jdbcType=VARCHAR,typeHandler=org.apache.ibatis.type.EnumTypeHandler},
+      AD_BANK_CODE = #{adBankCode,jdbcType=VARCHAR,typeHandler=org.apache.ibatis.type.EnumTypeHandler},
+      AD_MONEY_RETURN = #{adMoneyReturn,jdbcType=VARCHAR,typeHandler=org.apache.ibatis.type.EnumTypeHandler},
+      BUSI_CODE = #{busiCode,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  
+    <!-- 更新处理中、初始化状态为‘成功’ -->
+  <update id="updateHanddingAndInitDataById"  parameterType="map">
+  		update xjk_redemption_month_order T
+ 		SET T.ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},
+ 			T.SETTLE_DATE =  #{settleDate,jdbcType=DATE},
+ 			T.UPDATE_TIME = now()
+        <where>
+        	T.ID = #{id,jdbcType=BIGINT}
+        </where>
+  </update>
+  
+   <!--查询个人小金库赎回的初始化、待处理状态数据  -->
+   <select id="getPersonalUpdateDatas" parameterType="map" resultMap="BaseResultMap">
+  	select 
+      	t.ID id, 
+     	t.TRADE_NO tradeNo, t.PRODUCT_ORDER_NO productOrderNo, 
+     	t.IDENTITY_CODE identityCode,
+        t.CUST_ACC_NO custAccNo, t.ORDER_NO orderNo, 
+        t.PRODUCT_CODE productCode, t.ORDER_AMT orderAmt, t.ORDER_STATUS orderStatus, 
+        t.ORDER_DATE orderDate, t.TRADE_DATE tradeDate, t.SETTLE_DATE settleDate, 
+        t.IS_SPEED isSpeed,t.PART_ID partId, t.IS_PERSONAL_ACC isPersonalAcc,
+        t.TRADE_ONLINE tradeOnline,t.AD_BANK_CODE adBankCode,t.AD_MONEY_RETURN adMoneyReturn, t.BUSI_CODE busiCode
+    FROM xjk_redemption_month_order t 
+      where
+    	TRADE_DATE <![CDATA[ >=]]> #{startDate,jdbcType=TIMESTAMP}
+   		AND TRADE_DATE <![CDATA[ <=]]> #{endDate,jdbcType=TIMESTAMP}
+   		AND PRODUCT_CODE = #{productCode,jdbcType=VARCHAR}
+   		AND ORDER_STATUS IN ('INIT','HANDING')
+   		AND YN = '1' 
+   </select>
+   
+  <!-- 分页查询待处理数据 -->	
+  <select id="paginationPushData" parameterType="map" resultMap="BaseResultMap">
+   SELECT 
+   	 	t.ID id, 
+     	t.TRADE_NO tradeNo, t.PRODUCT_ORDER_NO productOrderNo,
+     	t.CUST_NAME custName,
+        t.CUST_ACC_NO custAccNo, t.ORDER_NO orderNo, 
+        t.IDENTITY_CODE identityCode,
+        t.PRODUCT_CODE productCode, t.ORDER_AMT orderAmt, t.ORDER_STATUS orderStatus, 
+        t.ORDER_DATE orderDate, t.TRADE_DATE tradeDate, t.SETTLE_DATE settleDate, 
+        t.IS_SPEED isSpeed,t.PART_ID partId,t.FUND_CODE fundCode, t.IS_PERSONAL_ACC isPersonalAcc,
+        t.TRADE_ONLINE tradeOnline,t.AD_BANK_CODE adBankCode,t.AD_MONEY_RETURN adMoneyReturn, t.BUSI_CODE busiCode
+        
+    FROM xjk_redemption_month_order t WHERE 
+ 				t.TRADE_DATE <![CDATA[ >=]]> #{startDate,jdbcType=TIMESTAMP}
+		    AND t.TRADE_DATE <![CDATA[ <=]]> #{endDate,jdbcType=TIMESTAMP}
+ 	        AND t.PRODUCT_CODE = #{productCode,jdbcType=VARCHAR}
+ 	        AND t.ORDER_STATUS ='SUCCESS'
+ 	        AND YN = '1'
+ 	        ORDER BY TRADE_DATE
+            LIMIT #{startIndex,jdbcType=DECIMAL},#{perSize,jdbcType=DECIMAL}
+   </select>
+   
+    <!-- 更新结算状态为'结算成功'及对账状态为‘已对账’ -->
+   <update id="updateSettleStatusSuccess" parameterType="map">
+	update
+		xjk_redemption_month_order
+	SET	SETTLE_STATUS ='SETTLED',
+		RECON_STATUS ='RECONED',
+  	 	UPDATE_TIME = now()
+	where
+		SETTLE_DATE=#{settleDate,jdbcType=DATE}
+	AND PRODUCT_CODE = #{productCode,jdbcType=VARCHAR}
+	AND YN = '1'
+    limit #{limit} offset #{offset}
+   </update>
+</mapper>

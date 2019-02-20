@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yay.mybatis.mapper.XJKPurchaseMonthOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.yay.mybatis.domain.XJKPurchaseMonthOrder" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="VERSION" property="version" jdbcType="INTEGER" />
+    <result column="SOURCE" property="source" jdbcType="VARCHAR" />
+    <result column="CHANNEL" property="channel" jdbcType="VARCHAR" />
+    <result column="MER_NO" property="merNo" jdbcType="VARCHAR" />
+    <result column="CUST_NAME" jdbcType="VARCHAR" property="custName" />
+    <result column="CUST_ACC_NO" property="custAccNo" jdbcType="VARCHAR" />
+    <result column="TRADE_NO" property="tradeNo" jdbcType="VARCHAR" />
+    <result column="PRODUCT_ORDER_NO" property="productOrderNo" jdbcType="VARCHAR" />
+    <result column="ORDER_NO" property="orderNo" jdbcType="VARCHAR" />
+    <result column="FUND_CODE" property="fundCode" jdbcType="VARCHAR" />
+    <result column="PRODUCT_CODE" property="productCode" jdbcType="VARCHAR" />
+    <result column="IDENTITY_CODE" property="identityCode" jdbcType="VARCHAR" />
+    <result column="ORDER_AMT" property="orderAmt" jdbcType="DECIMAL" />
+    <result column="ORDER_STATUS" property="orderStatus" jdbcType="VARCHAR" />
+    <result column="ORDER_DATE" property="orderDate" jdbcType="TIMESTAMP" />
+    <result column="TRADE_DATE" property="tradeDate" jdbcType="TIMESTAMP" />
+    <result column="SETTLE_DATE" property="settleDate" jdbcType="DATE" />
+    <result column="RECON_STATUS" property="reconStatus" jdbcType="VARCHAR" />
+    <result column="RECON_TIME" property="reconTime" jdbcType="TIMESTAMP" />
+    <result column="SETTLE_STATUS" property="settleStatus" jdbcType="VARCHAR" />
+    <result column="SETTLE_TIME" property="settleTime" jdbcType="TIMESTAMP" />
+    <result column="TRADE_ERROR" property="tradeError" jdbcType="VARCHAR" />
+    <result column="RECON_ERROR" property="reconError" jdbcType="VARCHAR" />
+    <result column="pay_id" jdbcType="VARCHAR" property="payId" />
+    <result column="channel_type" jdbcType="VARCHAR" property="channelType" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="YN" property="yn" jdbcType="TINYINT" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATE_OPERATOR" property="createOperator" jdbcType="VARCHAR" />
+    <result column="UPDATE_OPERATOR" property="updateOperator" jdbcType="VARCHAR" />
+    <result column="PART_ID" property="partId" jdbcType="BIGINT" />
+    <result column="IS_PERSONAL_ACC" property="isPersonalAcc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, VERSION, SOURCE, CHANNEL, MER_NO,CUST_NAME,CUST_ACC_NO, TRADE_NO, PRODUCT_ORDER_NO, ORDER_NO,
+    FUND_CODE, PRODUCT_CODE, IDENTITY_CODE, ORDER_AMT, ORDER_STATUS, ORDER_DATE, TRADE_DATE,
+    SETTLE_DATE, RECON_STATUS, RECON_TIME, SETTLE_STATUS, SETTLE_TIME, TRADE_ERROR, RECON_ERROR, pay_id, channel_type,
+    CREATED_TIME, UPDATE_TIME, YN, REMARK, CREATE_OPERATOR, UPDATE_OPERATOR, PART_ID,
+    IS_PERSONAL_ACC
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from xjk_purchase_month_order
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from xjk_purchase_month_order
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yay.mybatis.domain.XJKPurchaseMonthOrder">
+    insert into xjk_purchase_month_order (ID, VERSION, SOURCE,
+      CHANNEL, MER_NO,CUST_NAME, CUST_ACC_NO,
+      TRADE_NO, PRODUCT_ORDER_NO, ORDER_NO,
+      FUND_CODE, PRODUCT_CODE, IDENTITY_CODE,
+      ORDER_AMT, ORDER_STATUS, ORDER_DATE,
+      TRADE_DATE, SETTLE_DATE, RECON_STATUS,
+      RECON_TIME, SETTLE_STATUS, SETTLE_TIME,
+      TRADE_ERROR, RECON_ERROR, pay_id, channel_type, CREATED_TIME,
+      UPDATE_TIME, YN, REMARK,
+      CREATE_OPERATOR, UPDATE_OPERATOR, PART_ID,
+      IS_PERSONAL_ACC)
+    values (#{id,jdbcType=BIGINT}, #{version,jdbcType=INTEGER}, #{source,jdbcType=VARCHAR},
+      #{channel,jdbcType=VARCHAR}, #{merNo,jdbcType=VARCHAR}, #{custName,jdbcType=VARCHAR},#{custAccNo,jdbcType=VARCHAR},
+      #{tradeNo,jdbcType=VARCHAR}, #{productOrderNo,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR},
+      #{fundCode,jdbcType=VARCHAR}, #{productCode,jdbcType=VARCHAR}, #{identityCode,jdbcType=VARCHAR},
+      #{orderAmt,jdbcType=DECIMAL}, #{orderStatus,jdbcType=VARCHAR}, #{orderDate,jdbcType=TIMESTAMP},
+      #{tradeDate,jdbcType=TIMESTAMP}, #{settleDate,jdbcType=DATE}, #{reconStatus,jdbcType=VARCHAR},
+      #{reconTime,jdbcType=TIMESTAMP}, #{settleStatus,jdbcType=VARCHAR}, #{settleTime,jdbcType=TIMESTAMP},
+      #{tradeError,jdbcType=VARCHAR}, #{reconError,jdbcType=VARCHAR}, #{payId,jdbcType=VARCHAR}, #{channelType,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP}, #{yn,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR},
+      #{createOperator,jdbcType=VARCHAR}, #{updateOperator,jdbcType=VARCHAR}, #{partId,jdbcType=BIGINT},
+      #{isPersonalAcc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yay.mybatis.domain.XJKPurchaseMonthOrder" >
+    insert into xjk_purchase_month_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="version != null" >
+        VERSION,
+      </if>
+      <if test="source != null" >
+        SOURCE,
+      </if>
+      <if test="channel != null" >
+        CHANNEL,
+      </if>
+      <if test="merNo != null" >
+        MER_NO,
+      </if>
+      <if test="custName != null">
+        CUST_NAME,
+      </if>
+      <if test="custAccNo != null" >
+        CUST_ACC_NO,
+      </if>
+      <if test="tradeNo != null" >
+        TRADE_NO,
+      </if>
+      <if test="productOrderNo != null" >
+        PRODUCT_ORDER_NO,
+      </if>
+      <if test="orderNo != null" >
+        ORDER_NO,
+      </if>
+      <if test="fundCode != null" >
+        FUND_CODE,
+      </if>
+      <if test="productCode != null" >
+        PRODUCT_CODE,
+      </if>
+      <if test="identityCode != null" >
+        IDENTITY_CODE,
+      </if>
+      <if test="orderAmt != null" >
+        ORDER_AMT,
+      </if>
+      <if test="orderStatus != null" >
+        ORDER_STATUS,
+      </if>
+      <if test="orderDate != null" >
+        ORDER_DATE,
+      </if>
+      <if test="tradeDate != null" >
+        TRADE_DATE,
+      </if>
+      <if test="settleDate != null" >
+        SETTLE_DATE,
+      </if>
+      <if test="reconStatus != null" >
+        RECON_STATUS,
+      </if>
+      <if test="reconTime != null" >
+        RECON_TIME,
+      </if>
+      <if test="settleStatus != null" >
+        SETTLE_STATUS,
+      </if>
+      <if test="settleTime != null" >
+        SETTLE_TIME,
+      </if>
+      <if test="tradeError != null" >
+        TRADE_ERROR,
+      </if>
+      <if test="reconError != null" >
+        RECON_ERROR,
+      </if>
+      <if test="payId != null" >
+        pay_id,
+      </if>
+      <if test="channelType != null" >
+        channel_type,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="yn != null" >
+        YN,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="createOperator != null" >
+        CREATE_OPERATOR,
+      </if>
+      <if test="updateOperator != null" >
+        UPDATE_OPERATOR,
+      </if>
+      <if test="partId != null" >
+        PART_ID,
+      </if>
+      <if test="isPersonalAcc != null" >
+        IS_PERSONAL_ACC,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="merNo != null" >
+        #{merNo,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null" >
+        #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="custAccNo != null" >
+        #{custAccNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeNo != null" >
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productOrderNo != null" >
+        #{productOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fundCode != null" >
+        #{fundCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productCode != null" >
+        #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="identityCode != null" >
+        #{identityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAmt != null" >
+        #{orderAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null" >
+        #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeDate != null" >
+        #{tradeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="settleDate != null" >
+        #{settleDate,jdbcType=DATE},
+      </if>
+      <if test="reconStatus != null" >
+        #{reconStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="reconTime != null" >
+        #{reconTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="settleStatus != null" >
+        #{settleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="settleTime != null" >
+        #{settleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeError != null" >
+        #{tradeError,jdbcType=VARCHAR},
+      </if>
+      <if test="reconError != null" >
+        #{reconError,jdbcType=VARCHAR},
+      </if>
+      <if test="payId != null" >
+        #{pay_id,jdbcType=VARCHAR},
+      </if>
+      <if test="channelType != null" >
+        #{channel_type,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yn != null" >
+        #{yn,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createOperator != null" >
+        #{createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="updateOperator != null" >
+        #{updateOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="partId != null" >
+        #{partId,jdbcType=BIGINT},
+      </if>
+      <if test="isPersonalAcc != null" >
+        #{isPersonalAcc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByExample" parameterType="map" >
+    update xjk_purchase_month_order
+    set ID = #{record.id,jdbcType=BIGINT},
+      VERSION = #{record.version,jdbcType=INTEGER},
+      SOURCE = #{record.source,jdbcType=VARCHAR},
+      CHANNEL = #{record.channel,jdbcType=VARCHAR},
+      MER_NO = #{record.merNo,jdbcType=VARCHAR},
+      CUST_NAME = #{custName,jdbcType=VARCHAR},
+      CUST_ACC_NO = #{record.custAccNo,jdbcType=VARCHAR},
+      TRADE_NO = #{record.tradeNo,jdbcType=VARCHAR},
+      PRODUCT_ORDER_NO = #{record.productOrderNo,jdbcType=VARCHAR},
+      ORDER_NO = #{record.orderNo,jdbcType=VARCHAR},
+      FUND_CODE = #{record.fundCode,jdbcType=VARCHAR},
+      PRODUCT_CODE = #{record.productCode,jdbcType=VARCHAR},
+      IDENTITY_CODE = #{record.identityCode,jdbcType=VARCHAR},
+      ORDER_AMT = #{record.orderAmt,jdbcType=DECIMAL},
+      ORDER_STATUS = #{record.orderStatus,jdbcType=VARCHAR},
+      ORDER_DATE = #{record.orderDate,jdbcType=TIMESTAMP},
+      TRADE_DATE = #{record.tradeDate,jdbcType=TIMESTAMP},
+      SETTLE_DATE = #{record.settleDate,jdbcType=DATE},
+      RECON_STATUS = #{record.reconStatus,jdbcType=VARCHAR},
+      RECON_TIME = #{record.reconTime,jdbcType=TIMESTAMP},
+      SETTLE_STATUS = #{record.settleStatus,jdbcType=VARCHAR},
+      SETTLE_TIME = #{record.settleTime,jdbcType=TIMESTAMP},
+      TRADE_ERROR = #{record.tradeError,jdbcType=VARCHAR},
+      RECON_ERROR = #{record.reconError,jdbcType=VARCHAR},
+      pay_id = #{record.payId,jdbcType=VARCHAR},
+      channel_type = #{record.channelType,jdbcType=VARCHAR},
+      CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      YN = #{record.yn,jdbcType=TINYINT},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      CREATE_OPERATOR = #{record.createOperator,jdbcType=VARCHAR},
+      UPDATE_OPERATOR = #{record.updateOperator,jdbcType=VARCHAR},
+      PART_ID = #{record.partId,jdbcType=BIGINT},
+      IS_PERSONAL_ACC = #{record.isPersonalAcc,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yay.mybatis.domain.XJKPurchaseMonthOrder" >
+    update xjk_purchase_month_order
+    <set >
+      <if test="version != null" >
+        VERSION = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        SOURCE = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        CHANNEL = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="merNo != null" >
+        MER_NO = #{merNo,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null">
+        CUST_NAME = #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="custAccNo != null" >
+        CUST_ACC_NO = #{custAccNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeNo != null" >
+        TRADE_NO = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productOrderNo != null" >
+        PRODUCT_ORDER_NO = #{productOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fundCode != null" >
+        FUND_CODE = #{fundCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productCode != null" >
+        PRODUCT_CODE = #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="identityCode != null" >
+        IDENTITY_CODE = #{identityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAmt != null" >
+        ORDER_AMT = #{orderAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="orderStatus != null" >
+        ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null" >
+        ORDER_DATE = #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeDate != null" >
+        TRADE_DATE = #{tradeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="settleDate != null" >
+        SETTLE_DATE = #{settleDate,jdbcType=DATE},
+      </if>
+      <if test="reconStatus != null" >
+        RECON_STATUS = #{reconStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="reconTime != null" >
+        RECON_TIME = #{reconTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="settleStatus != null" >
+        SETTLE_STATUS = #{settleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="settleTime != null" >
+        SETTLE_TIME = #{settleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeError != null" >
+        TRADE_ERROR = #{tradeError,jdbcType=VARCHAR},
+      </if>
+      <if test="reconError != null" >
+        RECON_ERROR = #{reconError,jdbcType=VARCHAR},
+      </if>
+      <if test="payId != null" >
+        pay_id = #{payId,jdbcType=VARCHAR},
+      </if>
+      <if test="channelType != null" >
+        channel_type = #{channelType,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yn != null" >
+        YN = #{yn,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createOperator != null" >
+        CREATE_OPERATOR = #{createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="updateOperator != null" >
+        UPDATE_OPERATOR = #{updateOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="partId != null" >
+        PART_ID = #{partId,jdbcType=BIGINT},
+      </if>
+      <if test="isPersonalAcc != null" >
+        IS_PERSONAL_ACC = #{isPersonalAcc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yay.mybatis.domain.XJKPurchaseMonthOrder" >
+    update xjk_purchase_month_order
+    set VERSION = #{version,jdbcType=INTEGER},
+      SOURCE = #{source,jdbcType=VARCHAR},
+      CHANNEL = #{channel,jdbcType=VARCHAR},
+      MER_NO = #{merNo,jdbcType=VARCHAR},
+      CUST_NAME=#{custName,jdbcType=VARCHAR},
+      CUST_ACC_NO = #{custAccNo,jdbcType=VARCHAR},
+      TRADE_NO = #{tradeNo,jdbcType=VARCHAR},
+      PRODUCT_ORDER_NO = #{productOrderNo,jdbcType=VARCHAR},
+      ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      FUND_CODE = #{fundCode,jdbcType=VARCHAR},
+      PRODUCT_CODE = #{productCode,jdbcType=VARCHAR},
+      IDENTITY_CODE = #{identityCode,jdbcType=VARCHAR},
+      ORDER_AMT = #{orderAmt,jdbcType=DECIMAL},
+      ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},
+      ORDER_DATE = #{orderDate,jdbcType=TIMESTAMP},
+      TRADE_DATE = #{tradeDate,jdbcType=TIMESTAMP},
+      SETTLE_DATE = #{settleDate,jdbcType=DATE},
+      RECON_STATUS = #{reconStatus,jdbcType=VARCHAR},
+      RECON_TIME = #{reconTime,jdbcType=TIMESTAMP},
+      SETTLE_STATUS = #{settleStatus,jdbcType=VARCHAR},
+      SETTLE_TIME = #{settleTime,jdbcType=TIMESTAMP},
+      TRADE_ERROR = #{tradeError,jdbcType=VARCHAR},
+      RECON_ERROR = #{reconError,jdbcType=VARCHAR},
+      pay_id = #{payId,jdbcType=VARCHAR},
+      channel_type = #{channelType,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      YN = #{yn,jdbcType=TINYINT},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATE_OPERATOR = #{createOperator,jdbcType=VARCHAR},
+      UPDATE_OPERATOR = #{updateOperator,jdbcType=VARCHAR},
+      PART_ID = #{partId,jdbcType=BIGINT},
+      IS_PERSONAL_ACC = #{isPersonalAcc,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+
+   <!-- 更新处理中、初始化状态为‘成功’ -->
+  <update id="updateHanddingAndInitDataById"  parameterType="map">
+  		update xjk_purchase_month_order T
+ 		SET T.ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},
+ 			T.SETTLE_DATE =  #{settleDate,jdbcType=DATE},
+ 			T.UPDATE_TIME = now()
+        <where>
+        	ID = #{id,jdbcType=BIGINT}
+        </where>
+  </update>
+
+   <!-- 分页查询待处理数据 -->
+  <select id="paginationPushData" parameterType="map" resultMap="BaseResultMap">
+   SELECT
+   	 	t.ID id,
+		t.CUST_ACC_NO custAccNo,
+		t.CUST_NAME custName,
+		t.PRODUCT_ORDER_NO productOrderNo,
+		t.PRODUCT_CODE productCode,
+		t.IDENTITY_CODE identityCode,
+		t.ORDER_AMT orderAmt,
+		t.ORDER_STATUS orderStatus,
+		t.ORDER_DATE orderDate,
+		t.TRADE_DATE tradeDate,
+		t.SETTLE_DATE settleDate,
+		t.FUND_CODE fundCode,
+		t.PART_ID partId,t.IS_PERSONAL_ACC isPersonalAcc,
+        t.pay_id, t.channel_type
+    FROM xjk_purchase_month_order t WHERE
+    	    	t.TRADE_DATE <![CDATA[ >=]]> #{startDate,jdbcType=TIMESTAMP}
+		    AND t.TRADE_DATE <![CDATA[ <=]]> #{endDate,jdbcType=TIMESTAMP}
+ 	        AND t.PRODUCT_CODE = #{productCode,jdbcType=VARCHAR}
+ 	        AND t.ORDER_STATUS ='SUCCESS'
+ 	        AND YN = '1'
+ 	        ORDER BY TRADE_DATE
+            LIMIT #{startIndex,jdbcType=DECIMAL}, #{perSize,jdbcType=DECIMAL}
+   </select>
+
+   <!--查询个人小金库申购的初始化、待处理状态数据  -->
+   <select id="getPersonalUpdateDatas" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    	 from xjk_purchase_month_order
+    where
+    		TRADE_DATE <![CDATA[ >=]]> #{startDate,jdbcType=TIMESTAMP}
+   		AND TRADE_DATE <![CDATA[ <=]]> #{endDate,jdbcType=TIMESTAMP}
+   		AND PRODUCT_CODE = #{productCode,jdbcType=VARCHAR}
+   		AND ORDER_STATUS IN ('INIT','HANDING')
+   		AND YN = '1'
+   </select>
+
+   <!-- 更新结算状态为‘已结算’,对账状态为‘对账完成’ -->
+   <update id="updateSettleStatusSuccess" parameterType="map">
+   	update
+   		xjk_purchase_month_order
+ 	   SET SETTLE_STATUS ='SETTLED',
+ 	 	   RECON_STATUS ='RECONED',
+  	 	   UPDATE_TIME = now()
+   	 where
+   	  	SETTLE_DATE=#{settleDate,jdbcType=DATE}
+   	  AND PRODUCT_CODE = #{productCode,jdbcType=VARCHAR}
+   	  AND YN = '1'
+      AND
+      limit #{limit}
+   </update>
+</mapper>

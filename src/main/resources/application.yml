@@ -1,0 +1,17 @@
+# 服务配置
+server:
+  tomcat:
+    uri-encoding: UTF-8
+# http配置
+spring:
+  profiles:
+    active: dev
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+
+
+
