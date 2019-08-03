@@ -1,4 +1,4 @@
-package com.yay.disrupter.common;
+package com.yay.disruptor.common;
 
 import com.lmax.disruptor.EventHandler;
 

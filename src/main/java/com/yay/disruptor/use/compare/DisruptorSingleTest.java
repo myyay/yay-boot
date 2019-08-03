@@ -1,12 +1,12 @@
-package com.yay.disrupter.use.compare;
+package com.yay.disruptor.use.compare;
 
-import com.lmax.disruptor.BlockingWaitStrategy;
 import com.lmax.disruptor.EventHandler;
 import com.lmax.disruptor.RingBuffer;
+import com.lmax.disruptor.YieldingWaitStrategy;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
 import com.lmax.disruptor.util.DaemonThreadFactory;
-import com.yay.disrupter.common.DataDto;
+import com.yay.disruptor.common.DataDto;
 
 import java.nio.ByteBuffer;
 
@@ -43,7 +43,7 @@ public class DisruptorSingleTest {
                 bufferSize,
                 DaemonThreadFactory.INSTANCE,
                 ProducerType.SINGLE,
-                new BlockingWaitStrategy()
+                new YieldingWaitStrategy()
         );
 
         DateDtoConsumer4Test consumer4Test = new DateDtoConsumer4Test();
@@ -54,18 +54,20 @@ public class DisruptorSingleTest {
         // Start the Disruptor, starts all threads running
         disruptor.start();
 
+        System.out.println("消费者已启动");
+
         // Get the ring buffer from the Disruptor to be used for publishing.
         RingBuffer<DataDto> ringBuffer = disruptor.getRingBuffer();
 
-        /*ByteBuffer bb = ByteBuffer.allocate(8);
+        ByteBuffer bb = ByteBuffer.allocate(8);
         new Thread(() -> {
             for (long l = 0; l < size; l++) {
                 bb.putLong(0, l);
                 //填数据
                 ringBuffer.publishEvent(DisruptorSingleTest::translate, bb);
             }
-        }).start();*/
-        new Thread(() -> {
+        }).start();
+        /*new Thread(() -> {
 
             for (long i = 0; i < size; i++) {
                 long seq = ringBuffer.next();
@@ -81,7 +83,7 @@ public class DisruptorSingleTest {
                     ringBuffer.publish(seq);
                 }
             }
-        }).start();
+        }).start();*/
 
     }
 
@@ -109,7 +111,7 @@ public class DisruptorSingleTest {
     }
 
 /*
-    public class LongEventProducerWithTranslator {
+    public class LongEventProducerWitTranslator {
         private final RingBuffer<DataDto> ringBuffer;
 
         public LongEventProducerWithTranslator(RingBuffer<DataDto> ringBuffer) {

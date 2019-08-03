@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.1.2.RELEASE'
+        springBootVersion = '2.1.4.RELEASE'
     }
     repositories {
         mavenLocal()
@@ -52,7 +52,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-cache'
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-    compile 'com.wangyin.concrete:spring-boot-starter-concrete:1.1.5'
+//    compile 'com.wangyin.concrete:spring-boot-starter-concrete:1.1.5'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.0.0'
     implementation 'org.apache.commons:commons-lang3'
     implementation 'com.google.guava:guava:27.0.1-jre'

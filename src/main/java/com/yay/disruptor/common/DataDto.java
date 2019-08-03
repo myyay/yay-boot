@@ -1,4 +1,4 @@
-package com.yay.disrupter.common;
+package com.yay.disruptor.common;
 
 import java.io.Serializable;
 
@@ -36,5 +36,13 @@ public class DataDto implements Serializable {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    @Override
+    public String toString() {
+        return "DataDto{" +
+                "id=" + id +
+                ", desc='" + desc + '\'' +
+                '}';
     }
 }

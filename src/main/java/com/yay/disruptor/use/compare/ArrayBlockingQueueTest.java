@@ -1,6 +1,6 @@
-package com.yay.disrupter.use.compare;
+package com.yay.disruptor.use.compare;
 
-import com.yay.disrupter.common.DataDto;
+import com.yay.disruptor.common.DataDto;
 
 import java.util.concurrent.ArrayBlockingQueue;
 
